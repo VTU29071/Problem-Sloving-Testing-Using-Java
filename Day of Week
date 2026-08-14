@@ -1,0 +1,69 @@
+class Solution {
+    public String dayOfTheWeek(int day, int month, int year) {
+        String[] week = {
+            "Sunday", "Monday", "Tuesday",
+            "Wednesday", "Thursday", "Friday", "Saturday"
+        };
+
+        int[] days = {
+            31, 28, 31, 30, 31, 30,
+            31, 31, 30, 31, 30, 31
+        };
+
+        int total = 0;
+
+        for (int y = 1971; y < year; y++) {
+            total += isLeap(y) ? 366 : 365;
+        }
+
+        for (int m = 1; m < month; m++) {
+            total += days[m - 1];
+        }
+
+        if (month > 2 && isLeap(year)) {
+            total++;
+        }
+
+        total += day - 1;
+
+        return week[(total + 5) % 7];
+    }
+
+    private boolean isLeap(int year) {
+        return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
+    }
+}class Solution {
+    public String dayOfTheWeek(int day, int month, int year) {
+        String[] week = {
+            "Sunday", "Monday", "Tuesday",
+            "Wednesday", "Thursday", "Friday", "Saturday"
+        };
+
+        int[] days = {
+            31, 28, 31, 30, 31, 30,
+            31, 31, 30, 31, 30, 31
+        };
+
+        int total = 0;
+
+        for (int y = 1971; y < year; y++) {
+            total += isLeap(y) ? 366 : 365;
+        }
+
+        for (int m = 1; m < month; m++) {
+            total += days[m - 1];
+        }
+
+        if (month > 2 && isLeap(year)) {
+            total++;
+        }
+
+        total += day - 1;
+
+        return week[(total + 5) % 7];
+    }
+
+    private boolean isLeap(int year) {
+        return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
+    }
+}
