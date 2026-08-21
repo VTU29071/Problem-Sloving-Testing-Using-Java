@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+
+        while (T-- > 0) {
+            String s = sc.next();
+            int[] left = new int[26];
+            int[] right = new int[26];
+
+            int n = s.length();
+
+            for (int i = 0; i < n / 2; i++) {
+                left[s.charAt(i) - 'a']++;
+                right[s.charAt(n - 1 - i) - 'a']++;
+            }
+
+            if (Arrays.equals(left, right))
+                System.out.println("YES");
+            else
+                System.out.println("NO");
+        }
+
+        sc.close();
+    }
+}
