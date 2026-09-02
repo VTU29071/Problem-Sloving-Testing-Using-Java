@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        vector<int> ans;
+
+        if (p.size() > s.size()) return ans;
+
+        vector<int> need(26, 0);
+        vector<int> window(26, 0);
+
+        // Frequency of characters in p
+        for (char c : p) {
+            need[c - 'a']++;
+        }
+
+        int k = p.size();
+
+        // First window
+        for (int i = 0; i < k; i++) {
+            window[s[i] - 'a']++;
+        }
+
+        if (window == need) {
+            ans.push_back(0);
+        }
+
+        // Slide the window
+        for (int i = k; i < s.size(); i++) {
+            // Add new character
+            window[s[i] - 'a']++;
+
+            // Remove character leaving the window
+            window[s[i - k] - 'a']--;
+
+            // If frequencies match, it's an anagram
+            if (window == need) {
+                ans.push_back(i - k + 1);
+            }
+        }
+
+        return ans;
+    }
+};
